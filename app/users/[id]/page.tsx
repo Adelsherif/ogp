@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Params }) {
       title: product.name,
       description: product.description,
       images: [product.image],
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/product/${product.id}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${product.id}`,
       type: 'article'
     },
   };
@@ -54,7 +54,7 @@ export default async function ProductPage({ params }: { params: Params }) {
   const resolvedParams = await params;
   const product = await fetchProduct(resolvedParams.id);
   
-const fullUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/product/${product.id}`;
+const fullUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/users/${product.id}`;
 
   return (
     <div className="p-4">
