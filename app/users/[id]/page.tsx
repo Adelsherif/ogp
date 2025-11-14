@@ -57,7 +57,7 @@ export default async function ProductPage({ params }: { params: Params }) {
       <img src={product.image} alt={product.name} width={300} height={300} />
 <WhatsAppShareButton
   id={product.id.toString()}
-  baseUrl={process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}
+  baseUrl={process.env.NEXT_PUBLIC_BASE_URL || ''}
 />
 
     </div>
