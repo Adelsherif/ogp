@@ -1,6 +1,8 @@
 'use server';
 
 import WhatsAppShareButton from './WhatsAppShareButton';
+import { redirect } from 'next/navigation';
+
 
 interface Params {
   id: string;
@@ -41,7 +43,8 @@ export async function generateMetadata({ params }: { params: Params }) {
       title: product.name,
       description: product.description,
       images: [product.image],
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${product.id}`,
+      //url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${product.id}`,   //when click on og return to product 
+      url: `https://play.google.com/store/apps/details?id=com.project.aqarmap.crm`,    // redirect to app
       type: 'article'
     },
   };
@@ -67,3 +70,5 @@ const fullUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/users/${product.id}`;
     </div>
   );
 }
+
+
