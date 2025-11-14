@@ -1,4 +1,3 @@
-
 interface Props {
   id: string;
 }
@@ -7,7 +6,7 @@ export default function WhatsAppShareButton({ id }: Props) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
   const fullUrl = `${baseUrl}/product/${id}`;
-  const shareUrl = `https://wa.me/?text=${encodeURIComponent(fullUrl)}`;
+  const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(fullUrl)}`;
 
   return (
     <a
