@@ -1,18 +1,20 @@
-
+// app/product/[id]/WhatsAppShareButton.tsx
 interface Props {
   id: string;
-  baseUrl: string; // ضيفت السطر ده
+  baseUrl: string;
 }
 
 export default function WhatsAppShareButton({ id, baseUrl }: Props) {
-  const url = `${baseUrl}/product/${id}`;
+  const fullUrl = `${baseUrl}/product/${id}`;
+
+  const shareUrl = `https://wa.me/?text=${encodeURIComponent(fullUrl)}`;
 
   return (
     <a
-      href={`https://wa.me/?text=${encodeURIComponent(url)}`}
+      href={shareUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+      className="inline-block px-4 py-2 bg-green-500 text-white rounded"
     >
       شارك على واتساب
     </a>
