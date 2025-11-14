@@ -1,10 +1,10 @@
- interface Props {
+
+interface Props {
   id: string;
-  baseUrl: string; 
+  baseUrl: string; // ضيفت السطر ده
 }
 
-export default function WhatsAppShareButton({ id }: Props) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+export default function WhatsAppShareButton({ id, baseUrl }: Props) {
   const url = `${baseUrl}/product/${id}`;
 
   return (
