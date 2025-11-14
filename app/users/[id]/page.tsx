@@ -1,5 +1,7 @@
 'use server';
 
+import WhatsAppShareButton from './WhatsAppShareButton';
+
 interface Params {
   id: string;
 }
@@ -11,7 +13,6 @@ interface Product {
   image: string;
 }
 
-// جلب البيانات من JSONPlaceholder
 async function fetchProduct(id: string): Promise<Product> {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
   if (!res.ok) throw new Error('المستخدم غير موجود');
@@ -22,11 +23,10 @@ async function fetchProduct(id: string): Promise<Product> {
     id: user.id,
     name: user.name,
     description: `Email: ${user.email} - شركة: ${user.company?.name || 'غير متوفر'}`,
-    image: `https://i.pravatar.cc/300?img=${user.id}`, // صورة عشوائية للـ OG
+    image: `https://i.pravatar.cc/300?img=${user.id}`,
   };
 }
 
-// توليد OG Metadata ديناميكي
 export async function generateMetadata({ params }: { params: Params }) {
   const resolvedParams = await params;
   const product = await fetchProduct(resolvedParams.id);
@@ -42,7 +42,6 @@ export async function generateMetadata({ params }: { params: Params }) {
   };
 }
 
-// صفحة المنتج
 export default async function ProductPage({ params }: { params: Params }) {
   const resolvedParams = await params;
   const product = await fetchProduct(resolvedParams.id);
@@ -52,6 +51,7 @@ export default async function ProductPage({ params }: { params: Params }) {
       <h1 className="text-2xl mb-2">{product.name}</h1>
       <p>{product.description}</p>
       <img src={product.image} alt={product.name} width={300} height={300} />
+      <WhatsAppShareButton id={product.id.toString()} />
     </div>
   );
 }

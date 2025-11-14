@@ -12,12 +12,17 @@ export default async function Home() {
   const users: User[] = await res.json();
 
   return (
-    <div>
-      <h1>Users List</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            <Link href={`/users/${user.id}`}>{user.name}</Link>
+    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+      <h1 style={{ marginBottom: '1rem' }}>Users List</h1>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {users.map((user) => (
+          <li key={user.id} style={{ marginBottom: '0.5rem' }}>
+            <Link 
+              href={`/users/${user.id}`} 
+              style={{ color: '#0070f3', textDecoration: 'none' }}
+            >
+              {user.name}
+            </Link>
           </li>
         ))}
       </ul>
