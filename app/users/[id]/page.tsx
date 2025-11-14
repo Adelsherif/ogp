@@ -54,15 +54,15 @@ export default async function ProductPage({ params }: { params: Params }) {
   const resolvedParams = await params;
   const product = await fetchProduct(resolvedParams.id);
   
+const fullUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/product/${product.id}`;
 
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-2">{product.name}</h1>
       <p>{product.description}</p>
       <img src={product.image} alt={product.name} width={300} height={300} />
-<WhatsAppShareButton id={product.id.toString()} />
 
-
+<WhatsAppShareButton url={fullUrl} title={product.name} />
 
     </div>
   );
