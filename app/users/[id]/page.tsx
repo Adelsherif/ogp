@@ -4,6 +4,7 @@ import WhatsAppShareButton from './WhatsAppShareButton';
 
 interface Params {
   id: string;
+  
 }
 
 interface Product {
@@ -42,16 +43,23 @@ export async function generateMetadata({ params }: { params: Params }) {
   };
 }
 
+
+
 export default async function ProductPage({ params }: { params: Params }) {
   const resolvedParams = await params;
   const product = await fetchProduct(resolvedParams.id);
+  
 
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-2">{product.name}</h1>
       <p>{product.description}</p>
       <img src={product.image} alt={product.name} width={300} height={300} />
-      <WhatsAppShareButton id={product.id.toString()} />
+<WhatsAppShareButton
+  id={product.id.toString()}
+  baseUrl={process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}
+/>
+
     </div>
   );
 }
