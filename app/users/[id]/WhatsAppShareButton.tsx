@@ -1,12 +1,13 @@
-// app/product/[id]/WhatsAppShareButton.tsx
+"use client";
+
 interface Props {
   id: string;
-  baseUrl: string;
 }
 
-export default function WhatsAppShareButton({ id, baseUrl }: Props) {
-  const fullUrl = `${baseUrl}/product/${id}`;
+export default function WhatsAppShareButton({ id }: Props) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
+  const fullUrl = `${baseUrl}/product/${id}`;
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(fullUrl)}`;
 
   return (

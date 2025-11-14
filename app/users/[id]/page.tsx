@@ -19,6 +19,8 @@ async function fetchProduct(id: string): Promise<Product> {
   if (!res.ok) throw new Error('المستخدم غير موجود');
 
   const user = await res.json();
+  console.log("BASE URL =>", process.env.NEXT_PUBLIC_BASE_URL);
+
 
   return {
     id: user.id,
@@ -27,6 +29,7 @@ async function fetchProduct(id: string): Promise<Product> {
     image: `https://i.pravatar.cc/300?img=${user.id}`,
   };
 }
+
 
 export async function generateMetadata({ params }: { params: Params }) {
   const p = await params;
@@ -58,10 +61,8 @@ export default async function ProductPage({ params }: { params: Params }) {
       <h1 className="text-2xl mb-2">{product.name}</h1>
       <p>{product.description}</p>
       <img src={product.image} alt={product.name} width={300} height={300} />
-<WhatsAppShareButton
-  id={product.id.toString()}
-  baseUrl={process.env.NEXT_PUBLIC_BASE_URL!}
-/>
+<WhatsAppShareButton id={product.id.toString()} />
+
 
 
     </div>
