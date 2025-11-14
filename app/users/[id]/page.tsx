@@ -19,7 +19,6 @@ async function fetchProduct(id: string): Promise<Product> {
   if (!res.ok) throw new Error('المستخدم غير موجود');
 
   const user = await res.json();
-  console.log("BASE URL =>", process.env.NEXT_PUBLIC_BASE_URL);
 
 
   return {
